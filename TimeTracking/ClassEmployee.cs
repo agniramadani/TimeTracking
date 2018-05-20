@@ -14,7 +14,7 @@ namespace TimeTracking
         private int id;
         public int ID
         {
-            get { return id;}
+            get { return id; }
             set { id = value; }
         }
         private string name;
@@ -56,12 +56,15 @@ namespace TimeTracking
         }
 
 
-        public void hireEmployee()
+        public void hireEmployee(int a, string b, string c, string d, string e, double f)
         {
-            //Jasir mund ta fajtish ktau databasen
-            //kije variabla id(int), name(string), surname(string), city(string),country(string), salary(double), active(bool)
-
-            
+            ID = a;
+            Name = b;
+            Surname = c;
+            City = d;
+            Country = e;
+            Salary = f;
+            Active = true;
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\dc\Documents\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
@@ -72,7 +75,7 @@ namespace TimeTracking
             cmd.Clone();
             con.Close();
 
-            //Deri ktau
+           
             StreamWriter newEmployee = new StreamWriter(Application.StartupPath+"//Employees//"+id+" "+name+".txt");
             newEmployee.Close();
             string nrEmployeesPath = Application.StartupPath + "//Employees//NrEmployeesFile.txt";

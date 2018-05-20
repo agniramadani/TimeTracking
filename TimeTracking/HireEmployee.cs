@@ -71,14 +71,8 @@ namespace TimeTracking
         private void button1_Click(object sender, EventArgs e)
         {
             ClassEmployee newEmployee = new ClassEmployee();
-            newEmployee.ID = int.Parse(textBox1.Text);
-            newEmployee.Name = textBox2.Text;
-            newEmployee.Surname = textBox3.Text;
-            newEmployee.City = textBox4.Text;
-            newEmployee.Country = textBox5.Text;
-            newEmployee.Salary =double.Parse(textBox6.Text);
-            newEmployee.Active = true;
-            newEmployee.hireEmployee();
+            
+            newEmployee.hireEmployee(int.Parse(textBox1.Text), textBox2.Text,textBox3.Text, textBox4.Text, textBox5.Text, double.Parse(textBox6.Text));
         }
     }
 }
