@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace TimeTracking
 {
     public partial class Login : Form
     {
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\dc\Documents\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
+        DataTable dt = new DataTable();
         public Login()
         {
             InitializeComponent();
@@ -49,18 +52,18 @@ namespace TimeTracking
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Jasir provoe me database lidhe userin ene passin shajfe a de funksionoje
-            ClassLogin login = new ClassLogin();
-            if (login.isCorrect(textBox1.Text, textBox2.Text))
+            string query = "select * from Login where Name='" + textBox1.Text + "' and password='" + textBox2.Text + "'";
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
+            da.Fill(dt);
+            if (dt.Rows.Count == 1)
             {
-                Menu menu = new Menu();
-                menu.Show();
+                Menu ss = new Menu();
+                MessageBox.Show("Login approved!");
                 this.Hide();
+                ss.Show();
             }
-            else
-            {
-                MessageBox.Show("Wrong Username Or Password");
-            }
+            else MessageBox.Show("Incorrect username/passowrd!");
+
         }
     }
 }

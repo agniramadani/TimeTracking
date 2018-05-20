@@ -11,13 +11,49 @@ namespace TimeTracking
 {
     class ClassEmployee
     {
-        private int id { get; set; }
-        private string name { get; set; }
-        private string surname { get; set; }
-        private string city { get; set; }
-        private string country { get; set; }
-        private double salary { get; set; }
-        private bool active { get; set; }
+        private int id;
+        public int ID
+        {
+            get { return id;}
+            set { id = value; }
+        }
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        private string surname;
+        public string Surname
+        {
+            get { return surname; }
+            set { surname = value; }
+        }
+        private string city;
+        public string City
+        {
+            get { return city; }
+            set { city = value; }
+        }
+
+        private string country;
+        public string Country
+        {
+            get { return country; }
+            set { country = value; }
+        }
+        private double salary;
+        public double Salary
+        {
+            get { return salary; }
+            set { salary = value; }
+        }
+        private bool active;
+        public bool Active
+        {
+            get { return active; }
+            set { active = value; }
+        }
 
 
         public void hireEmployee()
@@ -31,7 +67,7 @@ namespace TimeTracking
             cmd.Connection = con;
             con.Open();
             cmd.CommandText = "insert into Employees (id,name,surname,city,country,salary,active) values " +
-                "('" + ID + "','" + Name + "','" + Surname + "','" + City + "','" + Country + "','" + Salary + "','" + Active + "')";
+                "('" + id + "','" + name + "','" + surname + "','" + city + "','" + country + "','" + salary + "','" + active + "')";
             cmd.ExecuteNonQuery();
             cmd.Clone();
             con.Close();
