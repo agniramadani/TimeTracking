@@ -32,5 +32,10 @@ namespace TimeTracking
             Menu menu = new Menu();
             menu.Show();
         }
+
+        private void Employees_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
