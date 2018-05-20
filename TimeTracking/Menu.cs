@@ -46,5 +46,12 @@ namespace TimeTracking
             HireEmployee hireemployees = new HireEmployee();
             hireemployees.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Time time = new Time();
+            time.Show();
+        }
     }
 }

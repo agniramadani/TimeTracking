@@ -28,12 +28,13 @@ namespace TimeTracking
             country = e;
             salary = f;
             active = true;
+
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\dc\Documents\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
             con.Open();
-            cmd.CommandText = "insert into Employees (id,name,surname,city,country,salary,active) values " +
-                "('" + id + "','" + name + "','" + surname + "','" + city + "','" + country + "','" + salary + "','" + active + "')";
+            cmd.CommandText = "insert into Employees (id,name,surname,city,country,salary,hours,active) values " +
+                "('" + id + "','" + name + "','" + surname + "','" + city + "','" + country + "','" + salary + "','" + 0 + "','" + active + "')";
             cmd.ExecuteNonQuery();
             cmd.Clone();
             con.Close();
