@@ -49,11 +49,18 @@ namespace TimeTracking
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            Menu menu = new Menu();
-            menu.Show();
-            this.Hide();
-
+            //Jasir provoe me database lidhe userin ene passin shajfe a de funksionoje
+            ClassLogin login = new ClassLogin();
+            if (login.isCorrect(textBox1.Text, textBox2.Text))
+            {
+                Menu menu = new Menu();
+                menu.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Wrong Username Or Password");
+            }
         }
     }
 }

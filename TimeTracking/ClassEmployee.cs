@@ -11,97 +11,14 @@ namespace TimeTracking
 {
     class ClassEmployee
     {
-        private int id;
-        private string name;
-        private string surname;
-        private string city;
-        private string country;
-        private double salary;
-        private bool active;
+        private int id { get; set; }
+        private string name { get; set; }
+        private string surname { get; set; }
+        private string city { get; set; }
+        private string country { get; set; }
+        private double salary { get; set; }
+        private bool active { get; set; }
 
-        public int ID
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                this.id = value;
-            }
-        }
-
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                this.name = value;
-            }
-        }
-
-        public string Surname
-        {
-            get
-            {
-                return surname;
-            }
-            set
-            {
-                this.surname = value;
-            }
-        }
-
-        public string City
-        {
-            get
-            {
-                return city;
-            }
-            set
-            {
-                this.city = value;
-            }
-        }
-
-        public string Country
-        {
-            get
-            {
-                return country;
-            }
-            set
-            {
-                this.country = value;
-            }
-        }
-
-        public double Salary
-        {
-            get
-            {
-                return salary;
-            }
-            set
-            {
-                this.salary = value;
-            }
-        }
-
-        public bool Active
-        {
-            get
-            {
-                return active;
-            }
-            set
-            {
-                this.active = value;
-            }
-        }
 
         public void hireEmployee()
         {
