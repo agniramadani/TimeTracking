@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace TimeTracking
 {
     public partial class HireEmployee : Form
-    {
+    {    
         public HireEmployee()
         {
             InitializeComponent();
+            StreamReader readNrEmployeesFile = new StreamReader(Application.StartupPath + "//Employees//NrEmployeesFile.txt");
+            textBox1.Text = readNrEmployeesFile.ReadToEnd();
+            readNrEmployeesFile.Close();
         }
 
         private void HireEmployee_Load(object sender, EventArgs e)
@@ -49,7 +53,7 @@ namespace TimeTracking
 
         private void label8_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -57,6 +61,24 @@ namespace TimeTracking
             this.Hide();
             Menu menu = new Menu();
             menu.Show();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ClassEmployee newEmployee = new ClassEmployee();
+            newEmployee.ID = int.Parse(textBox1.Text);
+            newEmployee.Name = textBox2.Text;
+            newEmployee.Surname = textBox3.Text;
+            newEmployee.City = textBox4.Text;
+            newEmployee.Country = textBox5.Text;
+            newEmployee.Salary =double.Parse(textBox6.Text);
+            newEmployee.Active = true;
+            newEmployee.hireEmployee();
         }
     }
 }
