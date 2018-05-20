@@ -11,13 +11,48 @@ namespace TimeTracking
 {
     class ClassEmployee
     {
-        private int id { get; set; }
-        private string name { get; set; }
-        private string surname { get; set; }
-        private string city { get; set; }
-        private string country { get; set; }
-        private double salary { get; set; }
-        private bool active { get; set; }
+        private int id;
+        public int ID
+        {
+            get { return id; }
+            set { id = value; }
+        }
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
+        private string surname;
+        public string Surname
+        {
+            get { return surname; }
+            set { surname = value; }
+        }
+        private string city;
+        public string City
+        {
+            get { return city; }
+            set { city = value; }
+        }
+        private string country;
+        public string Countru
+        {
+            get { return country; }
+            set { country = value; }
+        }
+        private double salary;
+        public double Salary
+        {
+            get { return salary; }
+            set { salary = value; }
+        }
+        private bool active;
+        public bool Active
+        {
+            get { return active; }
+            set { active = value; }
+        }
 
         public void hireEmployee(int a, string b, string c, string d, string e, double f)
         {
@@ -40,7 +75,8 @@ namespace TimeTracking
             con.Close();
 
 
-            StreamWriter newEmployee = new StreamWriter(Application.StartupPath + "//Employees//" + id + " " + name + ".txt");
+            StreamWriter newEmployee = new StreamWriter(Application.StartupPath + "//Employees//"+ name + ".txt");
+            newEmployee.WriteLine("Date          Hours");
             newEmployee.Close();
             string nrEmployeesPath = Application.StartupPath + "//Employees//NrEmployeesFile.txt";
             if (File.Exists(nrEmployeesPath))

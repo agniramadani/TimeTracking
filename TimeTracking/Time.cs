@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace TimeTracking
 {
@@ -20,6 +21,8 @@ namespace TimeTracking
         {
             InitializeComponent();
             loadlist();
+          
+           
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,11 +57,33 @@ namespace TimeTracking
             MessageBox.Show("Hours for " + comboBox1.Text + " are successfully updated!");
             cmd.ExecuteNonQuery();
             con.Close();
+            writeToFile();
             loadlist();
             comboBox1.Text = "Employees...";
 
             /* Albin lidhe me ato text filet ket bone per kit puntoret ta shkrune daten en sa or ka punu
              per cdo dit nrresht t ri, perdore daten pi ke kjo date and time picker. */
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Menu menu = new Menu();
+            this.Hide();
+            menu.Show();
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            
+        }
+        private void writeToFile()
+        {
+            ClassEmployee emp = new ClassEmployee();
+            string employeePath = Application.StartupPath + "//Employees//" + comboBox1.Text + ".txt";
+            string dataToWrite = dateTimePicker1.Value.ToString("dd/MM/yyyy") +" - "+ int.Parse(textBox1.Text);
+            StreamWriter writeEmployee = new StreamWriter(employeePath, true);
+            writeEmployee.WriteLine(dataToWrite);
+            writeEmployee.Close(); 
         }
     }
 }
