@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Data.SqlClient;
 
 namespace TimeTracking
 {
@@ -107,6 +108,11 @@ namespace TimeTracking
             //Jasir mund ta fajtish ktau databasen
             //kije variabla id(int), name(string), surname(string), city(string),country(string), salary(double), active(bool)
 
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\dc\Documents\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
+            SqlCommand cmd = new SqlCommand();
+            con.Open();
+            cmd.CommandText = "insert into Employees (id,name,surname,city,country,salary,active) values " +
+                "('" + id + "','" + name + "','" + surname + "','" + city + "','" + country + "','" + salary + "','" + active + "')";
 
             //Deri ktau
             StreamWriter newEmployee = new StreamWriter(Application.StartupPath+"//Employees//"+id+" "+name+".txt");
