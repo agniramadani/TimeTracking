@@ -62,6 +62,7 @@ namespace TimeTracking
                 this.Hide();
                 ss.Show();
             }
+
             else MessageBox.Show("Incorrect username/passowrd!");
 
         }

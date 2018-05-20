@@ -70,9 +70,21 @@ namespace TimeTracking
 
         private void button1_Click(object sender, EventArgs e)
         {
+           
             ClassEmployee newEmployee = new ClassEmployee();
+
+           
+                newEmployee.hireEmployee(int.Parse(textBox1.Text), textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, double.Parse(textBox6.Text));
+                MessageBox.Show("Employee added!");
+           
+
+
+           
+                
             
-            newEmployee.hireEmployee(int.Parse(textBox1.Text), textBox2.Text,textBox3.Text, textBox4.Text, textBox5.Text, double.Parse(textBox6.Text));
+           
+           
+
         }
     }
 }
