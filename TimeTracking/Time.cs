@@ -85,5 +85,10 @@ namespace TimeTracking
             writeEmployee.WriteLine(dataToWrite);
             writeEmployee.Close(); 
         }
+
+        private void Time_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

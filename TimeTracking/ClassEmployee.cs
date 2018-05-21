@@ -36,7 +36,7 @@ namespace TimeTracking
             set { city = value; }
         }
         private string country;
-        public string Countru
+        public string Country
         {
             get { return country; }
             set { country = value; }
@@ -69,14 +69,14 @@ namespace TimeTracking
             cmd.Connection = con;
             con.Open();
             cmd.CommandText = "insert into Employees (id,name,surname,city,country,salary,hours,active) values " +
-                "('" + id + "','" + name + "','" + surname + "','" + city + "','" + country + "','" + salary + "','" + 0 + "','" + active + "')";
+                "('" + ID + "','" + Name + "','" + Surname + "','" + City + "','" + Country + "','" + Salary + "','" + 0 + "','" + active + "')";
             cmd.ExecuteNonQuery();
             cmd.Clone();
             con.Close();
 
 
             StreamWriter newEmployee = new StreamWriter(Application.StartupPath + "//Employees//"+ name + ".txt");
-            newEmployee.WriteLine("Date          Hours");
+            newEmployee.WriteLine("Date         Hours");
             newEmployee.Close();
             string nrEmployeesPath = Application.StartupPath + "//Employees//NrEmployeesFile.txt";
             if (File.Exists(nrEmployeesPath))

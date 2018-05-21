@@ -125,6 +125,7 @@
             this.Controls.Add(this.comboBox1);
             this.Name = "Time";
             this.Text = "Time";
+            this.Load += new System.EventHandler(this.Time_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
