@@ -29,9 +29,9 @@ namespace TimeTracking
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Hide();
             Menu menu = new Menu();
-            menu.Show();
+            menu.ShowDialog();
+            this.Close();
         }
 
         private void Employees_Load(object sender, EventArgs e)

@@ -28,37 +28,36 @@ namespace TimeTracking
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
+        { 
             Employees employees = new Employees();
-            employees.Show();
+            employees.ShowDialog();
+            this.Close();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Menu menu = new Menu();
-            
+            Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Hide();
             HireEmployee hireemployees = new HireEmployee();
-            hireemployees.Show();
+            hireemployees.ShowDialog();
+            this.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            this.Hide();
             Time time = new Time();
-            time.Show();
+            time.ShowDialog();
+            this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             FireEmployee fireEmp = new FireEmployee();
-            this.Hide();
-            fireEmp.Show();
+            fireEmp.ShowDialog();
+            this.Close();
         }
     }
 }

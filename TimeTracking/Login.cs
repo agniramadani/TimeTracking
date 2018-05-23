@@ -56,11 +56,11 @@ namespace TimeTracking
             SqlDataAdapter da = new SqlDataAdapter(query, con);
             da.Fill(dt);
             if (dt.Rows.Count == 1)
-            {
-                Menu ss = new Menu();
+            { 
                 MessageBox.Show("Login approved!");
-                this.Hide();
-                ss.Show();
+                Menu menu = new Menu();
+                menu.ShowDialog();
+                this.Close();
             }
 
             else MessageBox.Show("Incorrect username/passowrd!");

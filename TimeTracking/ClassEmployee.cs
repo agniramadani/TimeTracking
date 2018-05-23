@@ -90,6 +90,14 @@ namespace TimeTracking
             nrOfEmployeesFile.Close();
         }
 
+        //Merr si parameter emrin e puntorit dhe kthen nese eshte aktiv apo jo
+        private bool activeEmp(string _name)
+        {
+            cmd.CommandText = "select * from Employees where name = '" + _name + "'";
+            return Convert.ToBoolean(drd[6]);
+        }
+
+        //Lista e punetoreve aktiv
         public void loadEmployeeList(ComboBox comboBox1)
         {
             comboBox1.Text = "Employees...";
@@ -101,12 +109,13 @@ namespace TimeTracking
 
             if (drd.HasRows)
                 while (drd.Read())
-                {   if (activeEmp(drd[1].ToString()))
-                    comboBox1.Items.Add(drd[1].ToString());
-                }
+                   if (activeEmp(drd[1].ToString()))
+                      comboBox1.Items.Add(drd[1].ToString());
+                
             con.Close();
         }
 
+        //Lista e punetoreve jo aktiv
         public void inactiveEmployees(ComboBox comboBox1)
         {
             comboBox1.Text = "Fired employees...";
@@ -118,10 +127,9 @@ namespace TimeTracking
 
             if (drd.HasRows)
                 while (drd.Read())
-                {
                     if (!activeEmp(drd[1].ToString()))
                         comboBox1.Items.Add(drd[1].ToString());
-                }
+                
             con.Close();
         }
 
@@ -144,12 +152,7 @@ namespace TimeTracking
 
         }
 
-        private bool activeEmp(string _name)
-        {
-            cmd.CommandText = "select * from Employees where name = '" + _name + "'";
-            return Convert.ToBoolean(drd[6]);
-        }
-
+        //Shkarkon nga puna nje punetor
         public void fireEmployee(ComboBox comboBox)
         {
             con.Open();
@@ -160,6 +163,7 @@ namespace TimeTracking
             con.Close();
         }
 
+        //E rikthen ne pune nje punetor i cili eshte shkarkuar (joaktiv)
         public void restoreEmployee(ComboBox comboBox)
         {
             con.Open();

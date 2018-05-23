@@ -35,6 +35,7 @@ namespace TimeTracking
 
         private void button1_Click(object sender, EventArgs e)
         {
+            cmd.Connection = con;
             con.Open();
             int hours = int.Parse(textBox1.Text);
             cmd.CommandText="update Employees set hours += '"+hours+"'where name='"+comboBox1.Text+"'";
@@ -45,15 +46,14 @@ namespace TimeTracking
             emp.loadEmployeeList(comboBox1);
             comboBox1.Text = "Employees...";
 
-            /* Albin lidhe me ato text filet ket bone per kit puntoret ta shkrune daten en sa or ka punu
-             per cdo dit nrresht t ri, perdore daten pi ke kjo date and time picker. */
+         
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Menu menu = new Menu();
-            this.Hide();
-            menu.Show();
+            menu.ShowDialog();
+            this.Close();
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
