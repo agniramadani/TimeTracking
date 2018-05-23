@@ -12,21 +12,19 @@ namespace TimeTracking
 {
     public partial class Employees : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\dc\Documents\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
-        SqlCommand cmd = new SqlCommand();
-        SqlDataReader drd;
-
+        ClassEmployee emp = new ClassEmployee();
         public Employees()
         {
             InitializeComponent();
-            loadlist();
+            emp.loadEmployeeList(comboBox1);
+           
         }
        // private classEmployees employees[50];
 
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            emp.employeeInfo(comboBox1.Text, textBox1, textBox2, textBox3, textBox4, textBox5, textBox6);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -39,19 +37,6 @@ namespace TimeTracking
         private void Employees_Load(object sender, EventArgs e)
         {
 
-        }
-        private void loadlist()
-        {
-            cmd.Connection = con;
-            comboBox1.Items.Clear();
-            con.Open();
-            cmd.CommandText = "select * from Employees";
-            drd = cmd.ExecuteReader();
-
-            if (drd.HasRows)
-                while (drd.Read())
-                    comboBox1.Items.Add(drd[1].ToString());
-            con.Close();
         }
     }
 }

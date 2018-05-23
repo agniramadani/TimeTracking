@@ -16,32 +16,16 @@ namespace TimeTracking
     {
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\dc\Documents\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
         SqlCommand cmd = new SqlCommand();
-        SqlDataReader drd;
+        ClassEmployee emp = new ClassEmployee();
         public Time()
         {
             InitializeComponent();
-            loadlist();
-          
-           
+            emp.loadEmployeeList(comboBox1);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-        }
-
-        private void loadlist()
-        {
-            cmd.Connection = con;
-            comboBox1.Items.Clear();
-            con.Open();
-            cmd.CommandText = "select * from Employees";
-            drd = cmd.ExecuteReader();
-
-            if (drd.HasRows)
-                while (drd.Read())
-                    comboBox1.Items.Add(drd[1].ToString());
-            con.Close();
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -58,7 +42,7 @@ namespace TimeTracking
             cmd.ExecuteNonQuery();
             con.Close();
             writeToFile();
-            loadlist();
+            emp.loadEmployeeList(comboBox1);
             comboBox1.Text = "Employees...";
 
             /* Albin lidhe me ato text filet ket bone per kit puntoret ta shkrune daten en sa or ka punu
@@ -78,7 +62,6 @@ namespace TimeTracking
         }
         private void writeToFile()
         {
-            ClassEmployee emp = new ClassEmployee();
             string employeePath = Application.StartupPath + "//Employees//" + comboBox1.Text + ".txt";
             string dataToWrite = dateTimePicker1.Value.ToString("dd/MM/yyyy") +" - "+ int.Parse(textBox1.Text);
             StreamWriter writeEmployee = new StreamWriter(employeePath, true);

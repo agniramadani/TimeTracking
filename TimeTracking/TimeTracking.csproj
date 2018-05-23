@@ -52,6 +52,12 @@
     <Compile Include="Employees.Designer.cs">
       <DependentUpon>Employees.cs</DependentUpon>
     </Compile>
+    <Compile Include="FireEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FireEmployee.Designer.cs">
+      <DependentUpon>FireEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="HireEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,12 +78,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SecureForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SecureForm.Designer.cs">
-      <DependentUpon>SecureForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Time.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +86,9 @@
     </Compile>
     <EmbeddedResource Include="Employees.resx">
       <DependentUpon>Employees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FireEmployee.resx">
+      <DependentUpon>FireEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HireEmployee.resx">
       <DependentUpon>HireEmployee.cs</DependentUpon>
@@ -105,9 +108,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SecureForm.resx">
-      <DependentUpon>SecureForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Time.resx">
       <DependentUpon>Time.cs</DependentUpon>
     </EmbeddedResource>

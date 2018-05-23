@@ -53,5 +53,12 @@ namespace TimeTracking
             Time time = new Time();
             time.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FireEmployee fireEmp = new FireEmployee();
+            this.Hide();
+            fireEmp.Show();
+        }
     }
 }

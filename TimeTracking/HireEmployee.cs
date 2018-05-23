@@ -12,13 +12,16 @@ using System.IO;
 namespace TimeTracking
 {
     public partial class HireEmployee : Form
-    {    
+    {
+        ClassEmployee emp = new ClassEmployee();
+
         public HireEmployee()
         {
             InitializeComponent();
             StreamReader readNrEmployeesFile = new StreamReader(Application.StartupPath + "//Employees//NrEmployeesFile.txt");
             textBox1.Text = readNrEmployeesFile.ReadToEnd();
             readNrEmployeesFile.Close();
+            emp.inactiveEmployees(comboBox1);
         }
 
         private void HireEmployee_Load(object sender, EventArgs e)
@@ -76,6 +79,22 @@ namespace TimeTracking
             MessageBox.Show("Employee added!");
             textBox1.Text = (a+1).ToString();
             textBox2.Text = textBox3.Text = textBox4.Text = textBox5.Text = textBox6.Text = "";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            emp.restoreEmployee(comboBox1);
+            emp.inactiveEmployees(comboBox1);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
