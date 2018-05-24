@@ -12,9 +12,11 @@ using System.IO;
 
 namespace TimeTracking
 {
+    
     public partial class Time : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\dc\Documents\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
+        
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Agni\Desktop\TimeTracking\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
         SqlCommand cmd = new SqlCommand();
         ClassEmployee emp = new ClassEmployee();
         public Time()
@@ -32,28 +34,33 @@ namespace TimeTracking
         {
 
         }
-
+        
         private void button1_Click(object sender, EventArgs e)
         {
-            cmd.Connection = con;
-            con.Open();
-            int hours = int.Parse(textBox1.Text);
-            cmd.CommandText="update Employees set hours += '"+hours+"'where name='"+comboBox1.Text+"'";
-            MessageBox.Show("Hours for " + comboBox1.Text + " are successfully updated!");
-            cmd.ExecuteNonQuery();
-            con.Close();
-            writeToFile();
-            emp.loadEmployeeList(comboBox1);
-            comboBox1.Text = "Employees...";
+            secure_form secure = new secure_form();
+            secure.ShowDialog();
+            if (secure.s()==true)
+            {
+                // Albin ktau shkruje funksjonin per add hours
 
-         
+
+
+
+                //
+                MessageBox.Show("added");
+            }
+            else
+            {
+                MessageBox.Show("not added");
+            }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Menu menu = new Menu();
-            menu.ShowDialog();
             this.Close();
+            Menu menu = new Menu();
+            menu.ShowDialog();        
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -70,6 +77,22 @@ namespace TimeTracking
         }
 
         private void Time_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            button1.Enabled = false;
+        }        
+        private void button3_Click_1(object sender, EventArgs e)
+        {          
+            secure_form secure = new secure_form();
+            secure.Show();
+            
+        }
+
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }

@@ -72,13 +72,22 @@ namespace TimeTracking
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {   
-            ClassEmployee newEmployee = new ClassEmployee();
-            int a = int.Parse(textBox1.Text);
-            newEmployee.hireEmployee(int.Parse(textBox1.Text), textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, double.Parse(textBox6.Text));
-            MessageBox.Show("Employee added!");
-            textBox1.Text = (a+1).ToString();
-            textBox2.Text = textBox3.Text = textBox4.Text = textBox5.Text = textBox6.Text = "";
+        {
+            secure_form secure = new secure_form();
+            secure.ShowDialog();
+            if (secure.s() == true)
+            {
+                ClassEmployee newEmployee = new ClassEmployee();
+                int a = int.Parse(textBox1.Text);
+                newEmployee.hireEmployee(int.Parse(textBox1.Text), textBox2.Text, textBox3.Text, textBox4.Text, textBox5.Text, double.Parse(textBox6.Text));
+                MessageBox.Show("Employee added!");
+                textBox1.Text = (a + 1).ToString();
+                textBox2.Text = textBox3.Text = textBox4.Text = textBox5.Text = textBox6.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Employee is not added");
+            }   
         }
 
         private void button3_Click(object sender, EventArgs e)

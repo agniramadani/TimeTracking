@@ -28,8 +28,17 @@ namespace TimeTracking
        
         private void button2_Click(object sender, EventArgs e)
         {
-            emp.fireEmployee(comboBox1);
-            emp.loadEmployeeList(comboBox1);
+            secure_form secure = new secure_form();
+            secure.ShowDialog();
+            if (secure.s() == true)
+            {
+                emp.fireEmployee(comboBox1);
+                emp.loadEmployeeList(comboBox1);
+            }
+            else
+            {
+                MessageBox.Show("Employee is not fired");
+            }           
         }
 
         private void button1_Click(object sender, EventArgs e)

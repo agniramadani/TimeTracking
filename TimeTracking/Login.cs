@@ -13,12 +13,13 @@ namespace TimeTracking
 {
     public partial class Login : Form
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\dc\Documents\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
-        DataTable dt = new DataTable();
+       
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Agni\Desktop\TimeTracking\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
+        DataTable dt = new DataTable();       
         public Login()
         {
             InitializeComponent();
-        }
+      }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -49,22 +50,21 @@ namespace TimeTracking
         {
             Close();
         }
-
+      
         private void button1_Click(object sender, EventArgs e)
-        {
-            string query = "select * from Login where Name='" + textBox1.Text + "' and password='" + textBox2.Text + "'";
-            SqlDataAdapter da = new SqlDataAdapter(query, con);
-            da.Fill(dt);
-            if (dt.Rows.Count == 1)
-            { 
-                MessageBox.Show("Login approved!");
-                Menu menu = new Menu();
-                menu.ShowDialog();
-                this.Close();
-            }
+        {   
+                string query = "select * from Login where Name='" + textBox1.Text + "' and password='" + textBox2.Text + "'";
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                da.Fill(dt);
+                if (dt.Rows.Count == 1)
+                {
+                    MessageBox.Show("Login approved!");
+                    Menu menu = new Menu();
+                    menu.Show();
+                    this.Hide();
 
-            else MessageBox.Show("Incorrect username/passowrd!");
-
-        }
+                }
+                else MessageBox.Show("Incorrect username/passowrd!");                    
+        }   
     }
 }
