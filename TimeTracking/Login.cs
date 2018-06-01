@@ -19,7 +19,7 @@ namespace TimeTracking
         public Login()
         {
             InitializeComponent();
-      }
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -64,7 +64,18 @@ namespace TimeTracking
                     this.Hide();
 
                 }
-                else MessageBox.Show("Incorrect username/passowrd!");                    
+                else if (textBox1.Text == "" | textBox2.Text == "")
+                {
+                    MessageBox.Show("Please enter you username and password");
+                    textBox1.Clear();
+                    textBox2.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect username/passowrd!");
+                    textBox1.Clear();
+                    textBox2.Clear();
+                }              
         }   
     }
 }

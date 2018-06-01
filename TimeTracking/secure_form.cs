@@ -55,7 +55,16 @@ namespace TimeTracking
                 a = 1;
                 this.Hide();
             }
+            else if (textBox1.Text == "" | textBox2.Text == "")
+            {
+                MessageBox.Show("Please enter you username and password");
+                textBox1.Clear();
+                textBox2.Clear();
+            }
+
             else MessageBox.Show("Incorrect username/passowrd!");
+            textBox1.Clear();
+            textBox2.Clear();
 
         }
 
@@ -72,6 +81,11 @@ namespace TimeTracking
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

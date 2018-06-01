@@ -41,9 +41,9 @@ namespace TimeTracking
 
         private void button2_Click(object sender, EventArgs e)
         {
-            HireEmployee hireemployees = new HireEmployee();
-            hireemployees.Show();
-            this.Hide();
+            HireEmployee h = new HireEmployee();
+            h.Show();
+            
         }
 
         private void button4_Click(object sender, EventArgs e)

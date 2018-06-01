@@ -15,6 +15,39 @@ namespace TimeTracking
     
     public partial class Time : Form
     {
+        int i = 0;
+
+        //ADD HOURS FUNCTION
+        void AddHoursFunction()
+        {
+            cmd.Connection = con;
+            con.Open();
+            int hours = int.Parse(textBox1.Text);
+            cmd.CommandText = "update Employees set hours += '" + hours + "'where name='" + comboBox1.Text + "'";
+            MessageBox.Show("Hours for " + comboBox1.Text + " are successfully updated!");
+            cmd.ExecuteNonQuery();
+            con.Close();
+            writeToFile();
+            emp.loadEmployeeList(comboBox1);
+            comboBox1.Text = "Employees...";
+        }
+
+        void AddHours()
+        {
+            int value;
+
+            if (int.TryParse(textBox1.Text, out value) && textBox1.Text != "")
+            {
+                //USING ADD HOURS FUNCTION
+                //AddHoursFunction();
+                MessageBox.Show("Added");
+                i++;
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid numerical value!");
+            }
+        }
         
         SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Agni\Desktop\TimeTracking\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
         SqlCommand cmd = new SqlCommand();
@@ -37,23 +70,38 @@ namespace TimeTracking
         
         private void button1_Click(object sender, EventArgs e)
         {
-            secure_form secure = new secure_form();
-            secure.ShowDialog();
-            if (secure.s()==true)
-            {
-                // Albin ktau shkruje funksjonin per add hours
-
-
-
-
-                //
-                MessageBox.Show("added");
+            if (i == 0)
+            {              
+                    if (textBox1.Text == "")
+                    {
+                        MessageBox.Show("Enter hours");
+                    }
+                    else if (System.Text.RegularExpressions.Regex.IsMatch(textBox1.Text, "[^0-9]"))
+                    {
+                        MessageBox.Show("Please enter only numbers.");
+                        textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
+                    }
+                    else
+                    {
+                        secure_form secure = new secure_form();
+                        secure.ShowDialog();
+                        if (secure.s() == true)
+                        {
+                            //Add hours
+                            AddHours();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Hours are not added!");
+                        }
+                    }                 
             }
             else
             {
-                MessageBox.Show("not added");
+                //Add hours 
+                //AddHours();
+                MessageBox.Show("Added");
             }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -93,6 +141,11 @@ namespace TimeTracking
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
