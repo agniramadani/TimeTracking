@@ -13,6 +13,7 @@ namespace TimeTracking
 {
     public partial class FireEmployee : Form
     {
+        int i = 0;
         ClassEmployee emp = new ClassEmployee();
 
         public FireEmployee()
@@ -28,17 +29,31 @@ namespace TimeTracking
        
         private void button2_Click(object sender, EventArgs e)
         {
-            secure_form secure = new secure_form();
-            secure.ShowDialog();
-            if (secure.s() == true)
+            if(comboBox1.SelectedItem == null)
+            {
+                MessageBox.Show("Please select one employee");               
+            }
+            else if (i==0)
+            {
+                secure_form secure = new secure_form();
+                secure.ShowDialog();
+                if (secure.s() == true)
+                {
+                    i++;
+                    emp.fireEmployee(comboBox1);
+                    emp.loadEmployeeList(comboBox1);
+                }
+                else
+                {
+                    MessageBox.Show("Employee is not fired");
+                }
+            }
+            else
             {
                 emp.fireEmployee(comboBox1);
                 emp.loadEmployeeList(comboBox1);
             }
-            else
-            {
-                MessageBox.Show("Employee is not fired");
-            }           
+                  
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -39,7 +39,7 @@ namespace TimeTracking
             if (int.TryParse(textBox1.Text, out value) && textBox1.Text != "")
             {
                 //USING ADD HOURS FUNCTION
-                //AddHoursFunction();
+                AddHoursFunction();
                 MessageBox.Show("Added");
                 i++;
             }
@@ -76,6 +76,10 @@ namespace TimeTracking
                     {
                         MessageBox.Show("Enter hours");
                     }
+                    else if(comboBox1.SelectedItem == null)
+                    {
+                        MessageBox.Show("Select one employee");
+                    }
                     else if (System.Text.RegularExpressions.Regex.IsMatch(textBox1.Text, "[^0-9]"))
                     {
                         MessageBox.Show("Please enter only numbers.");
@@ -92,14 +96,14 @@ namespace TimeTracking
                         }
                         else
                         {
-                            MessageBox.Show("Hours are not added!");
+                            MessageBox.Show("Hours not added!");
                         }
                     }                 
             }
             else
             {
                 //Add hours 
-                //AddHours();
+                AddHours();
                 MessageBox.Show("Added");
             }
         }

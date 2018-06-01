@@ -67,7 +67,9 @@ namespace TimeTracking
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            AddCredits add = new AddCredits();
+            add.Show();
+            this.Hide();
         }
     }
 }
