@@ -11,7 +11,7 @@ namespace TimeTracking
 {
     class ClassEmployee
     {
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Agni\Desktop\TimeTracking\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\albin\Documents\Time Tracking Employee Managment\TimeTracking\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
         SqlCommand cmd = new SqlCommand();
         SqlDataReader drd;
 
@@ -77,8 +77,8 @@ namespace TimeTracking
             con.Close();
 
 
-            StreamWriter newEmployee = new StreamWriter(Application.StartupPath + "//Employees//"+ name + ".txt");
-            newEmployee.WriteLine("Date         Hours");
+            StreamWriter newEmployee = new StreamWriter(Application.StartupPath + "//Employees//" + id + " " + name + ".txt");
+            
             newEmployee.Close();
             string nrEmployeesPath = Application.StartupPath + "//Employees//NrEmployeesFile.txt";
             if (File.Exists(nrEmployeesPath))
@@ -172,6 +172,83 @@ namespace TimeTracking
             MessageBox.Show("Employee " + comboBox.Text + " is back!");
             comboBox.Text = "Fired employees...";
             con.Close();
+        }
+
+        private int monthConvert(string month)
+        {
+            if (month == "January")
+            {
+                return 1;
+            }
+            else if (month == "February")
+            {
+                return 2;
+            }
+            else if (month == "March")
+            {
+                return 3;
+            }
+            else if (month == "Aprill")
+                return 4;
+            else if (month == "May")
+                return 5;
+            else if (month == "June")
+                return 6;
+            else if (month == "July")
+                return 7;
+            else if (month == "August")
+                return 8;
+            else if (month == "September")
+                return 9;
+            else if (month == "Octomber")
+                return 10;
+            else if (month == "November")
+                return 11;
+            else
+                return 12;
+        }
+        public void calculateSalary(string _name, string _month, string _year, TextBox salaryTextBox)
+        {
+            string idna = id.ToString(), _salaryValue = salary.ToString();
+
+
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandText = "select * from Employees where name = '" + _name + "'";
+            drd = cmd.ExecuteReader();
+            if (drd.Read())
+            {
+                idna = drd[0].ToString();
+                _salaryValue = drd[5].ToString();
+            }
+            con.Close();
+
+            StreamReader employeesSalary = new StreamReader(path: Application.StartupPath + "//Employees//" + idna + " " + _name + ".txt");
+            string line;
+            int hoursPerMonth = 0;
+            while ((line = employeesSalary.ReadLine()) != null)
+            {
+                string[] words = line.Split();
+                string day = words[0];
+                string month = words[1];
+                string year = words[2];
+                string hours = words[3];
+                int _dayFromFile = int.Parse(day);
+                int _monthFromFile = int.Parse(month);
+                int _yearFromFile = int.Parse(year);
+                int _hoursFromFile = int.Parse(hours);
+
+                if (_monthFromFile == monthConvert(_month) && _yearFromFile == int.Parse(_year))
+                {
+                    hoursPerMonth = hoursPerMonth + _hoursFromFile;
+                }
+
+            }
+
+            employeesSalary.Close();
+            double _salary = double.Parse(_salaryValue);
+            double salaryPerMonth = hoursPerMonth * _salary;
+            salaryTextBox.Text = salaryPerMonth.ToString();
         }
     }
 }

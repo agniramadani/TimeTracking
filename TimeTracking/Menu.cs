@@ -24,7 +24,9 @@ namespace TimeTracking
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            CalculateSalary calculateSalary = new CalculateSalary();
+            calculateSalary.Show();
+            this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)

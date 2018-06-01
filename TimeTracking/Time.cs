@@ -16,14 +16,16 @@ namespace TimeTracking
     public partial class Time : Form
     {
         int i = 0;
-
+        SqlDataReader drd;
         //ADD HOURS FUNCTION
         void AddHoursFunction()
         {
+            string id = " ";
             cmd.Connection = con;
             con.Open();
             int hours = int.Parse(textBox1.Text);
             cmd.CommandText = "update Employees set hours += '" + hours + "'where name='" + comboBox1.Text + "'";
+           
             MessageBox.Show("Hours for " + comboBox1.Text + " are successfully updated!");
             cmd.ExecuteNonQuery();
             con.Close();
@@ -49,7 +51,7 @@ namespace TimeTracking
             }
         }
         
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Agni\Desktop\TimeTracking\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\albin\Documents\Time Tracking Employee Managment\TimeTracking\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
         SqlCommand cmd = new SqlCommand();
         ClassEmployee emp = new ClassEmployee();
         public Time()
@@ -121,8 +123,18 @@ namespace TimeTracking
         }
         private void writeToFile()
         {
-            string employeePath = Application.StartupPath + "//Employees//" + comboBox1.Text + ".txt";
-            string dataToWrite = dateTimePicker1.Value.ToString("dd/MM/yyyy") +" - "+ int.Parse(textBox1.Text);
+            string id = " ";
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandText = "select * from Employees where name = '" + comboBox1.Text + "'";
+            drd = cmd.ExecuteReader();
+            if (drd.Read())
+            {
+                id = drd[0].ToString();
+
+            }
+            string employeePath = Application.StartupPath + "//Employees//" +id+" "+ comboBox1.Text + ".txt";
+            string dataToWrite = dateTimePicker1.Value.ToString("dd MM yyyy ") + int.Parse(textBox1.Text);
             StreamWriter writeEmployee = new StreamWriter(employeePath, true);
             writeEmployee.WriteLine(dataToWrite);
             writeEmployee.Close(); 
