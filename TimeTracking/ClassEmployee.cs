@@ -277,5 +277,28 @@ namespace TimeTracking
             double salaryPerMonth = hoursPerMonth * _salary;
             salaryTextBox.Text = salaryPerMonth.ToString();
         }
+
+        public void ReplaceHours(DateTimePicker dt, string _name, string replace)
+        {
+            string path = Application.StartupPath + "//Employees//" + _name + ".txt";
+            StreamReader empHours = new StreamReader(path);
+            string line;
+            string date = "";
+            int lineCount = 0;
+            while ((line = empHours.ReadLine()) != null && date != dt.Value.ToString("dd MM yyyy "))
+            {
+                lineCount++;
+                date = line.Substring(0, 11);
+                if (date == dt.Value.ToString("dd MM yyyy "))
+                {
+                    empHours.Close();
+                    string[] arrLine = File.ReadAllLines(path);
+                    arrLine[lineCount - 1] = replace;
+                    File.WriteAllLines(path, arrLine);
+                    break;
+                }
+            }
+            MessageBox.Show("Hours for" + Regex.Replace(_name, @"[\d-]", string.Empty) + " are updated!");
+        }
     }
 }
