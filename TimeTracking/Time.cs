@@ -20,43 +20,6 @@ namespace TimeTracking
         SqlCommand cmd = new SqlCommand();
         ClassEmployee emp = new ClassEmployee();
         int i = 0;
-
-        //ADD HOURS FUNCTION
-        void AddHoursFunction()
-        {
-
-            string id = Regex.Replace(comboBox1.Text, "[^0-9.]", "");
-            string name = Regex.Replace(comboBox1.Text, @"[\d-]", string.Empty);
-            name = Regex.Replace(name, @"\s+", "");
-            cmd.Connection = con;
-            con.Open();
-            int hours = int.Parse(textBox1.Text);
-            cmd.CommandText = "update Employees set hours += '" + hours + "'where ID='" + id + "'";
-
-            MessageBox.Show("Hours for " + name + " are successfully updated!");
-            cmd.ExecuteNonQuery();
-            con.Close();
-            writeToFile();
-
-        }
-
-        void AddHours()
-        {
-            int value;
-           
-                if (int.TryParse(textBox1.Text, out value) && textBox1.Text != "")
-                {
-                    //USING ADD HOURS FUNCTION
-                    AddHoursFunction();
-                    i++;
-                }
-                else
-                {
-                    MessageBox.Show("Please enter a valid numerical value!");
-                }
-            
-            
-        }
  
         public Time()
         {
@@ -110,9 +73,15 @@ namespace TimeTracking
             }
             else
             {
-                //Add hours 
-                AddHours();
-                MessageBox.Show("Added");
+                if (!emp.isDateRepeated(dateTimePicker1, comboBox1.Text))
+                {
+                    //Add hours 
+                    AddHours();
+                    MessageBox.Show("Added");
+                }
+                else
+                    MessageBox.Show("Hours for " + dateTimePicker1.Value.ToString("dd/MM/yyyy") + " are already set!");
+
             }
         }
 
@@ -161,6 +130,42 @@ namespace TimeTracking
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+
+        }
+        //ADD HOURS FUNCTION
+        private void AddHoursFunction()
+        {
+
+            string id = Regex.Replace(comboBox1.Text, "[^0-9.]", "");
+            string name = Regex.Replace(comboBox1.Text, @"[\d-]", string.Empty);
+            name = Regex.Replace(name, @"\s+", "");
+            cmd.Connection = con;
+            con.Open();
+            int hours = int.Parse(textBox1.Text);
+            cmd.CommandText = "update Employees set hours += '" + hours + "'where ID='" + id + "'";
+
+            MessageBox.Show("Hours for " + name + " are successfully updated!");
+            cmd.ExecuteNonQuery();
+            con.Close();
+            writeToFile();
+
+        }
+
+        private void AddHours()
+        {
+            int value;
+
+            if (int.TryParse(textBox1.Text, out value) && textBox1.Text != "")
+            {
+                //USING ADD HOURS FUNCTION
+                AddHoursFunction();
+                i++;
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid numerical value!");
+            }
+
 
         }
     }
