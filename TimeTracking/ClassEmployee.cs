@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
+
 
 namespace TimeTracking
 {
@@ -61,7 +63,8 @@ namespace TimeTracking
         public void hireEmployee(int a, string b, string c, string d, string e, double f)
         {
             id = a;
-            name = b;
+            b = Regex.Replace(b, @"[\d-]", string.Empty);
+            name = Regex.Replace(b, @"\s+", "");
             surname = c;
             city = d;
             country = e;
@@ -110,7 +113,7 @@ namespace TimeTracking
             if (drd.HasRows)
                 while (drd.Read())
                    if (activeEmp(drd[1].ToString()))
-                      comboBox1.Items.Add(drd[1].ToString());
+                      comboBox1.Items.Add(drd[0].ToString() + " " + drd[1].ToString());
                 
             con.Close();
         }
@@ -128,21 +131,24 @@ namespace TimeTracking
             if (drd.HasRows)
                 while (drd.Read())
                     if (!activeEmp(drd[1].ToString()))
-                        comboBox1.Items.Add(drd[1].ToString());
+                        comboBox1.Items.Add(drd[0].ToString() + " " + drd[1].ToString());
                 
             con.Close();
         }
 
         public void employeeInfo(string select, TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, TextBox t6)
         {
+            string idna = Regex.Replace(select, "[^0-9.]", "");
+            string _name = Regex.Replace(select, @"[\d-]", string.Empty);
+            _name = Regex.Replace(_name, @"\s+", "");
             cmd.Connection = con;
             con.Open();
-            cmd.CommandText = "select * from Employees where name = '"+select+"'";
+            cmd.CommandText = "select * from Employees where ID = '"+idna+"'";
             drd = cmd.ExecuteReader();
             if (drd.Read())
             {
                 t1.Text = drd[0].ToString();
-                t2.Text = select;
+                t2.Text = _name;
                 t3.Text = drd[2].ToString();
                 t4.Text = drd[3].ToString();
                 t5.Text = drd[4].ToString();
@@ -155,10 +161,13 @@ namespace TimeTracking
         //Shkarkon nga puna nje punetor
         public void fireEmployee(ComboBox comboBox)
         {
+            string idna = Regex.Replace(comboBox.Text, "[^0-9.]", "");
+            string _name = Regex.Replace(comboBox.Text, @"[\d-]", string.Empty);
+            _name = Regex.Replace(_name, @"\s+", "");
             con.Open();
-            cmd.CommandText = "update Employees set active = '" + false + "'where name='" + comboBox.Text + "'";
+            cmd.CommandText = "update Employees set active = '" + false + "'where ID='" + idna + "'";
             cmd.ExecuteNonQuery();
-            MessageBox.Show("Employee " + comboBox.Text + " is fired!");
+            MessageBox.Show("Employee " + _name + " is fired!");
             comboBox.Text = "Employees...";
             con.Close();
         }
@@ -166,8 +175,9 @@ namespace TimeTracking
         //E rikthen ne pune nje punetor i cili eshte shkarkuar (joaktiv)
         public void restoreEmployee(ComboBox comboBox)
         {
+            string idna = Regex.Replace(comboBox.Text, "[^0-9.]", "");
             con.Open();
-            cmd.CommandText = "update Employees set active = '" + true + "'where name='" + comboBox.Text + "'";
+            cmd.CommandText = "update Employees set active = '" + true + "'where ID='" + idna + "'";
             cmd.ExecuteNonQuery();
             MessageBox.Show("Employee " + comboBox.Text + " is back!");
             comboBox.Text = "Fired employees...";
@@ -207,14 +217,31 @@ namespace TimeTracking
             else
                 return 12;
         }
+
+        public bool isDateRepeated(DateTimePicker dt, string _name)
+        {
+            StreamReader empSalary = new StreamReader(path: Application.StartupPath + "//Employees//" + _name + ".txt");
+            string line;
+            string date = "";
+            while ((line = empSalary.ReadLine()) != null && date != dt.Value.ToString("dd MM yyyy "))
+            {
+                date = line.Substring(0, 11);
+            }
+            empSalary.Close();
+            if (date == dt.Value.ToString("dd MM yyyy "))
+                return true;
+            else return false;
+        }
+
         public void calculateSalary(string _name, string _month, string _year, TextBox salaryTextBox)
         {
-            string idna = id.ToString(), _salaryValue = salary.ToString();
-
+            string idna = Regex.Replace(_name, "[^0-9.]", "");
+            string _salaryValue = salary.ToString();
+           
 
             cmd.Connection = con;
             con.Open();
-            cmd.CommandText = "select * from Employees where name = '" + _name + "'";
+            cmd.CommandText = "select * from Employees where ID = '" + idna + "'";
             drd = cmd.ExecuteReader();
             if (drd.Read())
             {
@@ -223,7 +250,7 @@ namespace TimeTracking
             }
             con.Close();
 
-            StreamReader employeesSalary = new StreamReader(path: Application.StartupPath + "//Employees//" + idna + " " + _name + ".txt");
+            StreamReader employeesSalary = new StreamReader(path: Application.StartupPath + "//Employees//" + _name + ".txt");
             string line;
             int hoursPerMonth = 0;
             while ((line = employeesSalary.ReadLine()) != null)

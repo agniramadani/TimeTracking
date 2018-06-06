@@ -9,51 +9,55 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace TimeTracking
 {
     
     public partial class Time : Form
     {
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\dc\Documents\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlCommand cmd = new SqlCommand();
+        ClassEmployee emp = new ClassEmployee();
         int i = 0;
-        SqlDataReader drd;
+
         //ADD HOURS FUNCTION
         void AddHoursFunction()
         {
-            string id = " ";
+
+            string id = Regex.Replace(comboBox1.Text, "[^0-9.]", "");
+            string name = Regex.Replace(comboBox1.Text, @"[\d-]", string.Empty);
+            name = Regex.Replace(name, @"\s+", "");
             cmd.Connection = con;
             con.Open();
             int hours = int.Parse(textBox1.Text);
-            cmd.CommandText = "update Employees set hours += '" + hours + "'where name='" + comboBox1.Text + "'";
-           
-            MessageBox.Show("Hours for " + comboBox1.Text + " are successfully updated!");
+            cmd.CommandText = "update Employees set hours += '" + hours + "'where ID='" + id + "'";
+
+            MessageBox.Show("Hours for " + name + " are successfully updated!");
             cmd.ExecuteNonQuery();
             con.Close();
             writeToFile();
-            emp.loadEmployeeList(comboBox1);
-            comboBox1.Text = "Employees...";
+
         }
 
         void AddHours()
         {
             int value;
-
-            if (int.TryParse(textBox1.Text, out value) && textBox1.Text != "")
-            {
-                //USING ADD HOURS FUNCTION
-                AddHoursFunction();
-                MessageBox.Show("Added");
-                i++;
-            }
-            else
-            {
-                MessageBox.Show("Please enter a valid numerical value!");
-            }
+           
+                if (int.TryParse(textBox1.Text, out value) && textBox1.Text != "")
+                {
+                    //USING ADD HOURS FUNCTION
+                    AddHoursFunction();
+                    i++;
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid numerical value!");
+                }
+            
+            
         }
-        
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\dc\Documents\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
-        SqlCommand cmd = new SqlCommand();
-        ClassEmployee emp = new ClassEmployee();
+ 
         public Time()
         {
             InitializeComponent();
@@ -87,7 +91,7 @@ namespace TimeTracking
                         MessageBox.Show("Please enter only numbers.");
                         textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
                     }
-                    else
+                    else if (!emp.isDateRepeated(dateTimePicker1, comboBox1.Text))
                     {
                         secure_form secure = new secure_form();
                         secure.ShowDialog();
@@ -100,7 +104,9 @@ namespace TimeTracking
                         {
                             MessageBox.Show("Hours not added!");
                         }
-                    }                 
+                    }
+                    else
+                        MessageBox.Show("Hours for " + dateTimePicker1.Value.ToString("dd/MM/yyyy") + " are already set!");
             }
             else
             {
@@ -112,9 +118,9 @@ namespace TimeTracking
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
             Menu menu = new Menu();
-            menu.ShowDialog();        
+            menu.Show();        
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -123,17 +129,11 @@ namespace TimeTracking
         }
         private void writeToFile()
         {
-            string id = " ";
-            cmd.Connection = con;
-            con.Open();
-            cmd.CommandText = "select * from Employees where name = '" + comboBox1.Text + "'";
-            drd = cmd.ExecuteReader();
-            if (drd.Read())
-            {
-                id = drd[0].ToString();
-
-            }
-            string employeePath = Application.StartupPath + "//Employees//" +id+" "+ comboBox1.Text + ".txt";
+            string id = Regex.Replace(comboBox1.Text, "[^0-9.]", "");
+            string name = Regex.Replace(comboBox1.Text, @"[\d-]", string.Empty);
+            name = Regex.Replace(name, @"\s+", "");
+         
+            string employeePath = Application.StartupPath + "//Employees//" +id+" "+ name + ".txt";
             string dataToWrite = dateTimePicker1.Value.ToString("dd MM yyyy ") + int.Parse(textBox1.Text);
             StreamWriter writeEmployee = new StreamWriter(employeePath, true);
             writeEmployee.WriteLine(dataToWrite);
@@ -150,10 +150,8 @@ namespace TimeTracking
             button1.Enabled = false;
         }        
         private void button3_Click_1(object sender, EventArgs e)
-        {          
-            secure_form secure = new secure_form();
-            secure.Show();
-            
+        {
+
         }
 
         private void label4_Click(object sender, EventArgs e)

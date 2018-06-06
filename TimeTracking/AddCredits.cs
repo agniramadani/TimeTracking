@@ -11,11 +11,13 @@ using System.Windows.Forms;
 namespace TimeTracking
 {
     public partial class AddCredits : Form
-    {       
-        int i = 0;
+    {
+        ClassEmployee emp = new ClassEmployee();
+        bool i = false;
         public AddCredits()
         {
             InitializeComponent();
+            emp.loadEmployeeList(comboBox1);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -38,7 +40,7 @@ namespace TimeTracking
                 MessageBox.Show("Please enter only numbers.");
                 textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
             }
-            else if(i==0)
+            else if(!i)
             {
                 secure_form secure = new secure_form();
                 secure.ShowDialog();
@@ -54,7 +56,7 @@ namespace TimeTracking
 
                     //Kjo variabel ritet nese logohemi me sukses edhe nese perseri bejme add credits nuk na kerkon secure formen
                     //nese heren e pare jemi logu ather te dyten nuk ka nevoj te logohemi perseri
-                    i++;
+                    i = true;
 
                     MessageBox.Show("Credits Added");
                 }
@@ -85,6 +87,11 @@ namespace TimeTracking
             this.Hide();
             Menu menu = new Menu();
             menu.Show();
+        }
+
+        private void AddCredits_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

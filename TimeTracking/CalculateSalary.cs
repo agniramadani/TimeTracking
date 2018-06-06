@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace TimeTracking
 {
@@ -56,16 +57,18 @@ namespace TimeTracking
         private void button1_Click_1(object sender, EventArgs e)
     {
          label2.Hide();
+         string name = Regex.Replace(comboBox1.Text, @"[\d-]", string.Empty);
+         name = Regex.Replace(name, @"\s+", "");
          emp.calculateSalary(comboBox1.Text, comboBox2.Text, comboBox3.Text, textBox1);
-         label2.Text = "The salary for " + comboBox1.Text + " for month " + comboBox2.Text + " " + comboBox3.Text + " is:";
+         label2.Text = "The salary for " + name + " for month " + comboBox2.Text + " " + comboBox3.Text + " is:";
          label2.Show();
     }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
             Menu menu = new Menu();
-            menu.ShowDialog();
-            this.Close();
+            menu.Show();
+            this.Hide();
         }
 
         private void CalculateSalary_Load(object sender, EventArgs e)

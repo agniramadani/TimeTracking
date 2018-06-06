@@ -62,8 +62,8 @@ namespace TimeTracking
         private void button2_Click(object sender, EventArgs e)
         {
             Menu menu = new Menu();
-            menu.ShowDialog();
-            this.Close();
+            menu.Show();
+            this.Hide();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
