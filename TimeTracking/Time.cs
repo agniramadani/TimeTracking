@@ -51,7 +51,7 @@ namespace TimeTracking
             }
         }
         
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\albin\Documents\Time Tracking Employee Managment\TimeTracking\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\dc\Documents\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
         SqlCommand cmd = new SqlCommand();
         ClassEmployee emp = new ClassEmployee();
         public Time()

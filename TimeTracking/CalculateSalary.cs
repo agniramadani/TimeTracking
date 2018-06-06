@@ -13,7 +13,7 @@ namespace TimeTracking
     public partial class CalculateSalary : Form
     { 
    
-       ClassEmployee emp = new ClassEmployee();
+    ClassEmployee emp = new ClassEmployee();
     public CalculateSalary()
     {
         InitializeComponent();
@@ -55,9 +55,9 @@ namespace TimeTracking
 
         private void button1_Click_1(object sender, EventArgs e)
     {
-         label2.Show();
+         label2.Hide();
          emp.calculateSalary(comboBox1.Text, comboBox2.Text, comboBox3.Text, textBox1);
-         label2.Text = "Thes salary for " + comboBox1.Text + " for month " + comboBox2.Text + " " + comboBox3.Text + " is:";
+         label2.Text = "The salary for " + comboBox1.Text + " for month " + comboBox2.Text + " " + comboBox3.Text + " is:";
          label2.Show();
     }
 
@@ -66,6 +66,11 @@ namespace TimeTracking
             Menu menu = new Menu();
             menu.ShowDialog();
             this.Close();
+        }
+
+        private void CalculateSalary_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

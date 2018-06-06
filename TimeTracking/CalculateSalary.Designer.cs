@@ -40,9 +40,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(521, 492);
+            this.button2.Location = new System.Drawing.Point(391, 400);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(278, 65);
+            this.button2.Size = new System.Drawing.Size(208, 53);
             this.button2.TabIndex = 16;
             this.button2.Text = "Back To Menu";
             this.button2.UseVisualStyleBackColor = true;
@@ -50,16 +51,18 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(67, 460);
+            this.textBox1.Location = new System.Drawing.Point(50, 374);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(195, 22);
+            this.textBox1.Size = new System.Drawing.Size(147, 20);
             this.textBox1.TabIndex = 15;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(521, 266);
+            this.button1.Location = new System.Drawing.Point(391, 216);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(190, 53);
+            this.button1.Size = new System.Drawing.Size(142, 43);
             this.button1.TabIndex = 14;
             this.button1.Text = "Calculate Salary";
             this.button1.UseVisualStyleBackColor = true;
@@ -68,9 +71,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(64, 384);
+            this.label2.Location = new System.Drawing.Point(48, 312);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 17);
+            this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 13;
             this.label2.Text = "label2";
             // 
@@ -78,9 +82,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F);
-            this.label1.Location = new System.Drawing.Point(296, 72);
+            this.label1.Location = new System.Drawing.Point(222, 58);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(297, 44);
+            this.label1.Size = new System.Drawing.Size(230, 36);
             this.label1.TabIndex = 12;
             this.label1.Text = "Calculate Salary";
             // 
@@ -93,9 +98,10 @@
             "2018",
             "2019",
             "2020"});
-            this.comboBox3.Location = new System.Drawing.Point(725, 138);
+            this.comboBox3.Location = new System.Drawing.Point(544, 112);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(161, 24);
+            this.comboBox3.Size = new System.Drawing.Size(122, 21);
             this.comboBox3.TabIndex = 11;
             this.comboBox3.Text = "Select year...";
             // 
@@ -117,9 +123,10 @@
             "December",
             "",
             ""});
-            this.comboBox2.Location = new System.Drawing.Point(521, 138);
+            this.comboBox2.Location = new System.Drawing.Point(391, 112);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(168, 24);
+            this.comboBox2.Size = new System.Drawing.Size(127, 21);
             this.comboBox2.TabIndex = 10;
             this.comboBox2.Text = "Select month...";
             // 
@@ -127,19 +134,19 @@
             // 
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(53, 138);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBox1.Location = new System.Drawing.Point(40, 112);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(367, 37);
+            this.comboBox1.Size = new System.Drawing.Size(276, 30);
             this.comboBox1.TabIndex = 9;
             this.comboBox1.Text = "Select employee...";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // CalculateSalary
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 629);
+            this.ClientSize = new System.Drawing.Size(704, 511);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
@@ -149,9 +156,11 @@
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CalculateSalary";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CalculateSalary";
+            this.Load += new System.EventHandler(this.CalculateSalary_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

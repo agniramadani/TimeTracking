@@ -14,7 +14,7 @@ namespace TimeTracking
     public partial class Login : Form
     {
        
-        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\albin\Documents\Time Tracking Employee Managment\TimeTracking\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\dc\Documents\EmployeeData.mdf;Integrated Security=True;Connect Timeout=30");
         DataTable dt = new DataTable();       
         public Login()
         {
