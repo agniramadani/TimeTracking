@@ -73,8 +73,8 @@ namespace TimeTracking
 
             cmd.Connection = con;
             con.Open();
-            cmd.CommandText = "insert into Employees (id,name,surname,city,country,salary,hours,active) values " +
-                "('" + ID + "','" + Name + "','" + Surname + "','" + City + "','" + Country + "','" + Salary + "','" + 0 + "','" + active + "')";
+            cmd.CommandText = "insert into Employees (id,name,surname,city,country,salary,active) values " +
+                "('" + ID + "','" + Name + "','" + Surname + "','" + City + "','" + Country + "','" + Salary + "','" + active + "')";
             cmd.ExecuteNonQuery();
             cmd.Clone();
             con.Close();
@@ -300,5 +300,42 @@ namespace TimeTracking
             }
             MessageBox.Show("Hours for" + Regex.Replace(_name, @"[\d-]", string.Empty) + " are updated!");
         }
+
+        public void updateEmployee( ComboBox comboBox, TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, TextBox t6)
+        {
+            string idna = Regex.Replace(comboBox.Text, "[^0-9.]", "");
+            string _name = Regex.Replace(comboBox.Text, @"[\d-]", string.Empty);
+            _name = Regex.Replace(_name, @"\s+", "");
+            cmd.Connection = con;
+            con.Open();
+            cmd.CommandText = "update Employees set name = '" + t2.Text + "'where ID='" + idna + "'";
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = "update Employees set surname = '" + t3.Text + "'where ID='" + idna + "'";
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = "update Employees set city = '" + t4.Text + "'where ID='" + idna + "'";
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = "update Employees set country = '" + t5.Text + "'where ID='" + idna + "'";
+            cmd.ExecuteNonQuery();
+            cmd.CommandText = "update Employees set salary = '" + t6.Text + "'where ID='" + idna + "'";
+            cmd.ExecuteNonQuery();
+            MessageBox.Show("Employee " + _name + " is updated!");
+            renameFile(comboBox, t1, t2);
+            con.Close();
+            clrAll(comboBox, t1, t2, t3, t4, t5, t6);
+        }
+
+        private void renameFile(ComboBox comboBox, TextBox t1, TextBox t2)
+        {
+            string path = Application.StartupPath + "\\Employees\\" + comboBox.Text + ".txt";
+            string newName = Application.StartupPath + "\\Employees\\" + t1.Text + " " + t2.Text + ".txt";
+            File.Move(path, newName);
+        }
+        
+        private void clrAll(ComboBox comboBox, TextBox t1, TextBox t2, TextBox t3, TextBox t4, TextBox t5, TextBox t6)
+        {
+            comboBox.Text = "Employees...";
+            t1.Text = t2.Text = t3.Text = t4.Text = t5.Text = t6.Text = "";
+        }
+
     }
 }

@@ -106,9 +106,10 @@ namespace TimeTracking
 
         private void button2_Click(object sender, EventArgs e)
         {
+            i = false;
             this.Hide();
             Menu menu = new Menu();
-            menu.Show();        
+            menu.Show();
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -138,11 +139,6 @@ namespace TimeTracking
         {
             button1.Enabled = false;
         }        
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-
-        }
 
         private void label4_Click(object sender, EventArgs e)
         {

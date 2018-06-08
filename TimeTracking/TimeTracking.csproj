@@ -45,11 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCredits.cs">
+    <Compile Include="Update Employee.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddCredits.Designer.cs">
-      <DependentUpon>AddCredits.cs</DependentUpon>
+    <Compile Include="Update Employee.Designer.cs">
+      <DependentUpon>Update Employee.cs</DependentUpon>
     </Compile>
     <Compile Include="CalculateSalary.cs">
       <SubType>Form</SubType>
@@ -102,8 +102,8 @@
     <Compile Include="Time.Designer.cs">
       <DependentUpon>Time.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddCredits.resx">
-      <DependentUpon>AddCredits.cs</DependentUpon>
+    <EmbeddedResource Include="Update Employee.resx">
+      <DependentUpon>Update Employee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CalculateSalary.resx">
       <DependentUpon>CalculateSalary.cs</DependentUpon>
