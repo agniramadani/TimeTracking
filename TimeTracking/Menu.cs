@@ -39,6 +39,7 @@ namespace TimeTracking
         private void button7_Click(object sender, EventArgs e)
         {
             Application.Exit();
+            Dispose();
         }
 
         private void button2_Click(object sender, EventArgs e)

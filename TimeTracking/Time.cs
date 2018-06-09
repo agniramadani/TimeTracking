@@ -77,10 +77,7 @@ namespace TimeTracking
                     secure_form secure = new secure_form();
                     secure.ShowDialog();
                     if (secure.s() == true)
-                    {
-                        //Add hours
                         AddHours();
-                    }
                 }
             }
             else
@@ -89,7 +86,7 @@ namespace TimeTracking
                 {
                     string dataToWrite = dateTimePicker1.Value.ToString("dd MM yyyy ") + int.Parse(textBox1.Text);
                     DialogResult dr = MessageBox.Show("Do you want to replace hours?",
-                      "replacement", MessageBoxButtons.YesNo);
+                      "", MessageBoxButtons.YesNo);
                     switch (dr)
                     {
                         case DialogResult.Yes:

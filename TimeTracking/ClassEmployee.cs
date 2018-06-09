@@ -233,11 +233,10 @@ namespace TimeTracking
             else return false;
         }
 
-        public void calculateSalary(string _name, string _month, string _year, TextBox salaryTextBox)
+        public double calculateSalary(string _name, string _month, string _year)
         {
             string idna = Regex.Replace(_name, "[^0-9.]", "");
-            string _salaryValue = salary.ToString();
-           
+            string _salary = "";
 
             cmd.Connection = con;
             con.Open();
@@ -246,7 +245,7 @@ namespace TimeTracking
             if (drd.Read())
             {
                 idna = drd[0].ToString();
-                _salaryValue = drd[5].ToString();
+                _salary = drd[5].ToString();
             }
             con.Close();
 
@@ -266,16 +265,12 @@ namespace TimeTracking
                 int _hoursFromFile = int.Parse(hours);
 
                 if (_monthFromFile == monthConvert(_month) && _yearFromFile == int.Parse(_year))
-                {
-                    hoursPerMonth = hoursPerMonth + _hoursFromFile;
-                }
-
+                    hoursPerMonth += _hoursFromFile;
             }
 
             employeesSalary.Close();
-            double _salary = double.Parse(_salaryValue);
-            double salaryPerMonth = hoursPerMonth * _salary;
-            salaryTextBox.Text = salaryPerMonth.ToString();
+            double salaryPerMonth = hoursPerMonth * double.Parse(_salary);
+            return salaryPerMonth;
         }
 
         public void ReplaceHours(DateTimePicker dt, string _name, string replace)
@@ -318,7 +313,7 @@ namespace TimeTracking
             cmd.ExecuteNonQuery();
             cmd.CommandText = "update Employees set salary = '" + t6.Text + "'where ID='" + idna + "'";
             cmd.ExecuteNonQuery();
-            MessageBox.Show("Employee " + _name + " is updated!");
+            MessageBox.Show("Employee " + t2.Text + " is updated!");
             renameFile(comboBox, t1, t2);
             con.Close();
             clrAll(comboBox, t1, t2, t3, t4, t5, t6);

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Text.RegularExpressions;
 namespace TimeTracking
 {
     public partial class UpdateEmployee : Form
@@ -41,9 +41,18 @@ namespace TimeTracking
                 secure.ShowDialog();
                 if (secure.s() == true)
                 {
-                    emp.updateEmployee(comboBox1, textBox1, textBox2, textBox3, textBox4, textBox5, textBox6);
-                    emp.loadEmployeeList(comboBox1);
-                    i = true;
+                    DialogResult dr = MessageBox.Show("Do you want to save changes made to " + textBox2.Text + " ?",
+                     "", MessageBoxButtons.YesNo);
+                    switch (dr)
+                    {
+                        case DialogResult.Yes:
+                            emp.updateEmployee(comboBox1, textBox1, textBox2, textBox3, textBox4, textBox5, textBox6);
+                            emp.loadEmployeeList(comboBox1);
+                            i = true;
+                            break;
+                        case DialogResult.No:
+                            break;
+                    }
                 }
                 else
                 {
@@ -52,8 +61,18 @@ namespace TimeTracking
             }
             else
             {
-                emp.updateEmployee(comboBox1, textBox1, textBox2, textBox3, textBox4, textBox5, textBox6);
-                emp.loadEmployeeList(comboBox1);
+                DialogResult dr = MessageBox.Show("Do you want to save changes made to " + textBox2.Text + " ?",
+                     "", MessageBoxButtons.YesNo);
+                switch (dr)
+                {
+                    case DialogResult.Yes:
+                        emp.updateEmployee(comboBox1, textBox1, textBox2, textBox3, textBox4, textBox5, textBox6);
+                        emp.loadEmployeeList(comboBox1);
+                        i = true;
+                        break;
+                    case DialogResult.No:
+                        break;
+                }
             }
         }
 
