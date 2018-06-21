@@ -65,7 +65,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(82, 290);
+            this.label2.Location = new System.Drawing.Point(93, 287);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 29);
             this.label2.TabIndex = 13;
@@ -91,12 +91,12 @@
             "2018",
             "2019",
             "2020"});
-            this.comboBox3.Location = new System.Drawing.Point(447, 155);
+            this.comboBox3.Location = new System.Drawing.Point(447, 204);
             this.comboBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(161, 33);
             this.comboBox3.TabIndex = 11;
-            this.comboBox3.Text = "Select year...";
+            this.comboBox3.Text = " Select year...";
             // 
             // comboBox2
             // 
@@ -117,23 +117,23 @@
             "December",
             "",
             ""});
-            this.comboBox2.Location = new System.Drawing.Point(241, 155);
+            this.comboBox2.Location = new System.Drawing.Point(241, 204);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(168, 33);
             this.comboBox2.TabIndex = 10;
-            this.comboBox2.Text = "Select month...";
+            this.comboBox2.Text = " Select month...";
             // 
             // comboBox1
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(241, 89);
+            this.comboBox1.Location = new System.Drawing.Point(241, 96);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(367, 39);
             this.comboBox1.TabIndex = 9;
-            this.comboBox1.Text = "Select employee...";
+            this.comboBox1.Text = " Select employee...";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // CalculateSalary
